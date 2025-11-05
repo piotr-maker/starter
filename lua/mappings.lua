@@ -7,6 +7,7 @@ local map = vim.keymap.set
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 map("n", "<leader>ca", vim.lsp.buf.code_action, {desc = "lsp code action"})
+map("n", "<leader>cc", "<cmd>CodeCompanionChat<CR>", {desc = "code companion chat"})
 map("n", "<leader>gr", "<cmd>Telescope lsp_references<CR>", {desc = "lsp references"})
 map("n", "<leader>gd", "<cmd>Telescope lsp_definitions<CR>", {desc = "lsp definitions"})
 map("n", "<leader>gi", "<cmd>Telescope lsp_implementations<CR>", {desc = "lsp implementations"})

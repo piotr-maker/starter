@@ -36,4 +36,41 @@ return {
   		},
   	},
   },
+
+  {
+  "olimorris/codecompanion.nvim",
+  cmd = {
+    'CodeCompanion',
+    'CodeCompanionActions',
+    'CodeCompanionChat',
+    'CodeCompanionCmd',
+  },
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope.nvim",
+  },
+  config = function()
+    require("codecompanion").setup({
+      adapters = {
+        http = {
+          ollama = function()
+            return require("codecompanion.adapters").extend("ollama", {
+              env = {
+                url = "http://127.0.0.1:11434",
+              },
+              parameters = {
+                model = "deepseek-coder:6.7b",
+                temperature = 0.3,
+              },
+            })
+          end,
+        },
+      },
+      strategies = {
+        chat = { adapter = "ollama" },
+        inline = { adapter = "ollama" },
+      },
+    })
+  end,
+  }
 }
