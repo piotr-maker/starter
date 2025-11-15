@@ -5,24 +5,40 @@ return {
     opts = require "configs.conform",
   },
 
-  -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
     config = function()
       require "configs.lspconfig"
     end,
   },
+  {
+    "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
+    end,
+  },
 
-  -- test new blink
-  -- { import = "nvchad.blink.lazyspec" },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    lazy = true
+  },
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("configs.treesitter")
+    end
+  },
+
+  {
+    "neovim/nvim-lspconfig",
+    lazy = true,
+    dependencies = {
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+    },
+    config = function()
+      require("nvchad.configs.lspconfig").defaults()
+      require("configs.lspconfig")
+     end,
+  },
 }
