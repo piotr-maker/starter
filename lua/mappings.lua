@@ -12,3 +12,4 @@ map("n", "<leader>gd", "<cmd>Telescope lsp_definitions<CR>", {desc = "lsp defini
 map("n", "<leader>gi", "<cmd>Telescope lsp_implementations<CR>", {desc = "lsp implementations"})
 map("n", "<leader>gx", "<cmd>Telescope diagnostics<CR>", {desc = "lsp diagnostics"})
 
+map("n", "<leader>dd", "<cmd>DevdocsOpenCurrentFloat<CR>", { desc = "open devdocs" })

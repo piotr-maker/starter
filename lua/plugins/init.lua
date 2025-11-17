@@ -41,4 +41,41 @@ return {
       require("configs.lspconfig")
      end,
   },
+
+  {
+    "luckasRanarison/nvim-devdocs",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    cmd = {
+      "DevdocsFetch",
+      "DevdocsInstall",
+      "DevdocsUninstall",
+      "DevdocsOpen",
+      "DevdocsOpenFloat",
+      "DevdocsOpenCurrent",
+      "DevdocsOpenCurrentFloat",
+      "DevdocsUpdate",
+      "DevdocsUpdateAll",
+    },
+    opts = function(_, opts)
+      require("configs.devdocs")
+    end,
+    config = function()
+      vim.notify(vim.inspect(opts), vim.log.levels.INFO)
+      require("nvim-devdocs").setup(opts)
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "markdown",
+        callback = function()
+          if vim.bo.buftype == "nofile" then
+            vim.opt_local.conceallevel = 2
+            vim.opt_local.concealcursor = "nc"
+          end
+        end,
+      })
+    end,
+  },
 }
